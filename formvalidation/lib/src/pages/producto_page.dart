@@ -162,24 +162,44 @@ class _ProductoPageState extends State<ProductoPage> {
 
       scaffoldKey.currentState.showSnackBar(snackbar);
     }
-
+    
     _mostrarFoto() {
-      if(producto.fotoUrl != null ){
-        //TODO: tengo que hacer esto
-        return FadeInImage(
-          image: NetworkImage(producto.fotoUrl),
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          height: 300.0,
-          fit: BoxFit.cover,
-        );
-      }else{
-        return Image(
-          image: AssetImage(foto?.path ?? 'assets/no-image.jpg'),
-          height: 300.0,
-          fit: BoxFit.cover,
-        );
+ 
+      if (producto.fotoUrl != null) {
+  
+        return Container();
+  
+      } else {
+  
+        if( foto != null ){
+          return Image.file(
+            foto,
+            fit: BoxFit.cover,
+            height: 300.0,
+          );
+        }
+        return Image.asset('assets/no-image.jpg');
       }
     }
+
+
+    // _mostrarFoto() {
+    //   if(producto.fotoUrl != null ){
+    //     //TODO: tengo que hacer esto
+    //     return FadeInImage(
+    //       image: NetworkImage(producto.fotoUrl),
+    //       placeholder: AssetImage('assets/jar-loading.gif'),
+    //       height: 300.0,
+    //       fit: BoxFit.cover,
+    //     );
+    //   }else{
+    //     return Image(
+    //       image: AssetImage(foto?.path ?? 'assets/no-image.jpg'),
+    //       height: 300.0,
+    //       fit: BoxFit.cover,
+    //     );
+    //   }
+    // }
 
     _seleccionarFoto() async{
       _procesarImagen(ImageSource.gallery);
